@@ -122,7 +122,8 @@ class StreamingConversation(Generic[OutputDeviceType]):
                 self.conversation.logger.info("Ignoring empty transcription")
                 return
             if transcription.is_final:
-                self.conversation.logger.debug(transcription)
+                # we want to store transcription on our google cloud for 
+                # tracking purposes
                 self.conversation.logger.debug(
                     "Got transcription: {}, confidence: {}".format(
                         transcription.message, transcription.confidence
