@@ -126,7 +126,7 @@ class TranscriptEventManager(events_manager.EventsManager):
         if event.type == EventType.TRANSCRIPT:
             transcript_event = typing.cast(TranscriptEvent, event)
             self.output_device.consume_transcript(transcript_event)
-            self.logger.debug(event.dict()['text'])
+            self.logger.debug(str(event.dict()['sender']) + " " + event.dict()['text'])
 
     def restart(self, output_device: WebsocketOutputDevice):
         self.output_device = output_device
