@@ -100,13 +100,13 @@ class DeepgramTranscriber(BaseAsyncTranscriber[DeepgramTranscriberConfig]):
         elif self.transcriber_config.audio_encoding == AudioEncoding.MULAW:
             encoding = "mulaw"
         
-        if encoding:
-            url_params = {
-                "encoding": encoding,
-                "sample_rate": self.transcriber_config.sampling_rate,
-                "channels": 1,
-                "interim_results": "true",
-            }
+        # if encoding:
+        #     url_params = {
+        #         "encoding": encoding,
+        #         "sample_rate": self.transcriber_config.sampling_rate,
+        #         "channels": 1,
+        #         "interim_results": "true",
+        #     }
             
         extra_params = {}
         if self.transcriber_config.language:
