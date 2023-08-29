@@ -97,6 +97,8 @@ class DeepgramTranscriber(BaseAsyncTranscriber[DeepgramTranscriberConfig]):
             encoding = "linear16"
         elif self.transcriber_config.audio_encoding == AudioEncoding.MULAW:
             encoding = "mulaw"
+        else:
+            encoding = "linear16"
         url_params = {
             "encoding": encoding,
             "sample_rate": self.transcriber_config.sampling_rate,
