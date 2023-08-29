@@ -93,7 +93,7 @@ class DeepgramTranscriber(BaseAsyncTranscriber[DeepgramTranscriberConfig]):
         super().terminate()
 
     def get_deepgram_url(self):
-        print(self.transcriber_config)
+        print('Transcriber config', self.transcriber_config)
         url_params = {}
         if self.transcriber_config.audio_encoding == AudioEncoding.LINEAR16:
             encoding = "linear16"
