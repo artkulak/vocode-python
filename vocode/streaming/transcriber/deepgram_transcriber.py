@@ -93,6 +93,8 @@ class DeepgramTranscriber(BaseAsyncTranscriber[DeepgramTranscriberConfig]):
         super().terminate()
 
     def get_deepgram_url(self):
+        print(self.transcriber_config)
+        url_params = {}
         if self.transcriber_config.audio_encoding == AudioEncoding.LINEAR16:
             encoding = "linear16"
         elif self.transcriber_config.audio_encoding == AudioEncoding.MULAW:
@@ -105,11 +107,7 @@ class DeepgramTranscriber(BaseAsyncTranscriber[DeepgramTranscriberConfig]):
                 "channels": 1,
                 "interim_results": "true",
             }
-        else:
-            url_params = {
-                "channels": 1,
-                "interim_results": "true",
-            }
+            
         extra_params = {}
         if self.transcriber_config.language:
             extra_params["language"] = self.transcriber_config.language
