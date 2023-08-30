@@ -108,6 +108,8 @@ class DeepgramTranscriber(BaseAsyncTranscriber[DeepgramTranscriberConfig]):
                 "interim_results": "true",
             }
             
+        url_params = {}
+            
         extra_params = {}
         if self.transcriber_config.language:
             extra_params["language"] = self.transcriber_config.language
