@@ -113,8 +113,8 @@ class DeepgramTranscriber(BaseAsyncTranscriber[DeepgramTranscriberConfig]):
             encoding = "mulaw"
         
         url_params = {
-            # "encoding": encoding,
-            # "sample_rate": self.transcriber_config.sampling_rate,
+            "encoding": encoding,
+            "sample_rate": self.transcriber_config.sampling_rate,
             "channels": 1,
             "interim_results": "true",
         }
