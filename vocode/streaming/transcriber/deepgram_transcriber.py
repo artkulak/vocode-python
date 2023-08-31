@@ -47,7 +47,7 @@ import wave
 # Setup wave file parameters
 nchannels = 1  # mono
 sampwidth = 2  # assumes 16 bit audio data
-framerate = self.transcriber_config.sampling_rate
+framerate = 48000
 nframes = 0  # will be updated as more data comes in
 comptype = "NONE"
 compname = "not compressed"
