@@ -204,9 +204,9 @@ class DeepgramTranscriber(BaseAsyncTranscriber[DeepgramTranscriberConfig]):
                         * sample_width
                     )
                     
-                    wave_file.writeframes(data)
+                    # wave_file.writeframes(data)
                     await ws.send(data)
-                wave_file.close()
+                # wave_file.close()
                 self.logger.debug("Terminating Deepgram transcriber sender")
 
             async def receiver(ws: WebSocketClientProtocol):
