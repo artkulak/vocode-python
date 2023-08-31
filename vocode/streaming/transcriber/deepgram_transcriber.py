@@ -42,6 +42,20 @@ duration_hist = meter.create_histogram(
     unit="seconds",
 )
 
+import wave
+
+# Setup wave file parameters
+nchannels = 1  # mono
+sampwidth = 2  # assumes 16 bit audio data
+framerate = self.transcriber_config.sampling_rate
+nframes = 0  # will be updated as more data comes in
+comptype = "NONE"
+compname = "not compressed"
+
+# Create a new wave file
+wave_file = wave.open("audio.wav", "wb")
+wave_file.setparams((nchannels, sampwidth, framerate, nframes, comptype, compname))
+
 
 class DeepgramTranscriber(BaseAsyncTranscriber[DeepgramTranscriberConfig]):
     def __init__(
@@ -190,8 +204,9 @@ class DeepgramTranscriber(BaseAsyncTranscriber[DeepgramTranscriberConfig]):
                         * num_channels
                         * sample_width
                     )
-                    open('audio.wav', 'wb').write(data)
+                    wave_file.writeframes(data)
                     await ws.send(data)
+                wave_file.close()
                 self.logger.debug("Terminating Deepgram transcriber sender")
 
             async def receiver(ws: WebSocketClientProtocol):
