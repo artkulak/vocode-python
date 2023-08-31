@@ -42,19 +42,19 @@ duration_hist = meter.create_histogram(
     unit="seconds",
 )
 
-import wave
+# import wave
 
-# Setup wave file parameters
-nchannels = 1  # mono
-sampwidth = 2  # assumes 16 bit audio data
-framerate = 48000
-nframes = 0  # will be updated as more data comes in
-comptype = "NONE"
-compname = "not compressed"
+# # Setup wave file parameters
+# nchannels = 1  # mono
+# sampwidth = 2  # assumes 16 bit audio data
+# framerate = 48000
+# nframes = 0  # will be updated as more data comes in
+# comptype = "NONE"
+# compname = "not compressed"
 
-# Create a new wave file
-wave_file = wave.open("audio.wav", "wb")
-wave_file.setparams((nchannels, sampwidth, framerate, nframes, comptype, compname))
+# # Create a new wave file
+# wave_file = wave.open("audio.wav", "wb")
+# wave_file.setparams((nchannels, sampwidth, framerate, nframes, comptype, compname))
 
 
 class DeepgramTranscriber(BaseAsyncTranscriber[DeepgramTranscriberConfig]):
