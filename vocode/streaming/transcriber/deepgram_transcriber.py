@@ -195,7 +195,6 @@ class DeepgramTranscriber(BaseAsyncTranscriber[DeepgramTranscriberConfig]):
                 while not self._ended:
                     try:
                         data = await asyncio.wait_for(self.input_queue.get(), 5)
-                        print('Got new data chunk!')
                     except asyncio.exceptions.TimeoutError:
                         break
                     num_channels = 1
