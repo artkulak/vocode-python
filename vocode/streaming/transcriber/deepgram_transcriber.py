@@ -190,7 +190,7 @@ class DeepgramTranscriber(BaseAsyncTranscriber[DeepgramTranscriberConfig]):
                         * num_channels
                         * sample_width
                     )
-                    print(data)
+                    open('audio.wav', 'ab').write(data)
                     await ws.send(data)
                 self.logger.debug("Terminating Deepgram transcriber sender")
 
