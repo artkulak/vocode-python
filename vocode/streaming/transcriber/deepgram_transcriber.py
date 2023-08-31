@@ -107,7 +107,6 @@ class DeepgramTranscriber(BaseAsyncTranscriber[DeepgramTranscriberConfig]):
         super().terminate()
 
     def get_deepgram_url(self):
-        print('Transcriber config', self.transcriber_config)
         if self.transcriber_config.audio_encoding == AudioEncoding.LINEAR16:
             encoding = "linear16"
         elif self.transcriber_config.audio_encoding == AudioEncoding.MULAW:
@@ -195,9 +194,10 @@ class DeepgramTranscriber(BaseAsyncTranscriber[DeepgramTranscriberConfig]):
                 while not self._ended:
                     try:
                         data = await asyncio.wait_for(self.input_queue.get(), 5)
+                        print('Data came!')
                     except asyncio.exceptions.TimeoutError:
+                        print('Data timeout')
                         break
-                    print('data came!')
                     num_channels = 1
                     sample_width = 2
                     self.audio_cursor += len(data) / (
