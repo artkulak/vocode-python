@@ -197,6 +197,7 @@ class DeepgramTranscriber(BaseAsyncTranscriber[DeepgramTranscriberConfig]):
                         data = await asyncio.wait_for(self.input_queue.get(), 5)
                     except asyncio.exceptions.TimeoutError:
                         break
+                    print('data came!')
                     num_channels = 1
                     sample_width = 2
                     self.audio_cursor += len(data) / (
