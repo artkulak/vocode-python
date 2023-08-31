@@ -114,7 +114,7 @@ class DeepgramTranscriber(BaseAsyncTranscriber[DeepgramTranscriberConfig]):
         
         url_params = {
             "encoding": encoding,
-            "sample_rate": self.transcriber_config.sampling_rate,
+            "sample_rate": 16000, # self.transcriber_config.sampling_rate,
             "channels": 1,
             "interim_results": "true",
         }
