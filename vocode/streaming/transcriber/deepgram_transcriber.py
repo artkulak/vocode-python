@@ -203,6 +203,7 @@ class DeepgramTranscriber(BaseAsyncTranscriber[DeepgramTranscriberConfig]):
                         * num_channels
                         * sample_width
                     )
+                    print(data)
                     # wave_file.writeframes(data)
                     await ws.send(data)
                 # wave_file.close()
