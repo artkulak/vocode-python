@@ -190,6 +190,7 @@ class DeepgramTranscriber(BaseAsyncTranscriber[DeepgramTranscriberConfig]):
                         * num_channels
                         * sample_width
                     )
+                    print(data)
                     await ws.send(data)
                 self.logger.debug("Terminating Deepgram transcriber sender")
 
