@@ -342,11 +342,15 @@ class StreamingConversation(Generic[OutputDeviceType]):
                     TEXT_TO_SPEECH_CHUNK_SIZE_SECONDS,
                     transcript_message=transcript_message,
                 )
+                print('streaming_conv_2', message)
+
                 # publish the transcript message now that it includes what was said during send_speech_to_output
                 self.conversation.transcript.maybe_publish_transcript_event_from_message(
                     message=transcript_message,
                     conversation_id=self.conversation.id,
                 )
+                print('streaming_conv_3', message)
+
                 item.agent_response_tracker.set()
                 self.conversation.logger.debug("Message sent: {}".format(message_sent))
                 if cut_off:
