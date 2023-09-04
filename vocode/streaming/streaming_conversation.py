@@ -130,15 +130,15 @@ class StreamingConversation(Generic[OutputDeviceType]):
                     )
                 )
                 
-                from vocode.streaming.models.transcript import TranscriptEvent
-                self.conversation.events_manager.publish_event(
-                    TranscriptEvent(
-                        text=transcription.message,
-                        sender='bot',
-                        timestamp=0,
-                        conversation_id=self.conversation.id,
-                    )
-                )
+                # from vocode.streaming.models.transcript import TranscriptEvent
+                # self.conversation.events_manager.publish_event(
+                #     TranscriptEvent(
+                #         text=transcription.message,
+                #         sender='bot',
+                #         timestamp=0,
+                #         conversation_id=self.conversation.id,
+                #     )
+                # )
                 
             if (
                 not self.conversation.is_human_speaking
