@@ -125,6 +125,7 @@ class TranscriptEventManager(events_manager.EventsManager):
     def handle_event(self, event: Event):
         if event.type == EventType.TRANSCRIPT:
             transcript_event = typing.cast(TranscriptEvent, event)
+            print(str(event.dict()['sender']) + " " + event.dict()['text'])
             self.output_device.consume_transcript(transcript_event)
             # self.logger.debug(str(event.dict()['conversation_id']) + " " + str(event.dict()['sender']) + " " + event.dict()['text'])
     def restart(self, output_device: WebsocketOutputDevice):
