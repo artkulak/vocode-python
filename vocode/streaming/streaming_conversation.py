@@ -434,7 +434,7 @@ class StreamingConversation(Generic[OutputDeviceType]):
             self.filler_audio_worker = self.FillerAudioWorker(
                 input_queue=self.filler_audio_queue, conversation=self
             )
-        print(events_manager or EventsManager())
+        print(events_manager)
         self.events_manager = events_manager or EventsManager()
         self.events_task: Optional[asyncio.Task] = None
         self.per_chunk_allowance_seconds = per_chunk_allowance_seconds
