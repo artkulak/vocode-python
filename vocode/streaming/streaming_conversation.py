@@ -330,7 +330,7 @@ class StreamingConversation(Generic[OutputDeviceType]):
                 self.conversation.transcript.add_message(
                     message=transcript_message,
                     conversation_id=self.conversation.id,
-                    publish_to_events_manager=False,
+                    publish_to_events_manager=True,
                 )
                 message_sent, cut_off = await self.conversation.send_speech_to_output(
                     message.text,
