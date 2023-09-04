@@ -129,6 +129,16 @@ class StreamingConversation(Generic[OutputDeviceType]):
                         transcription.message, transcription.confidence
                     )
                 )
+                
+                self.conversation.events_manager.publish_event(
+                    TranscriptEvent(conversation_id=self.id, transcript=TranscriptEvent(
+                    text=transcription.message,
+                    sender='BOT',
+                    timestamp=0,
+                    conversation_id=self.conversation.conversation.id,
+                ))
+                )
+                
             if (
                 not self.conversation.is_human_speaking
                 and self.conversation.is_interrupt(transcription)
