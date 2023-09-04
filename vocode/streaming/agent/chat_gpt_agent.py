@@ -127,6 +127,7 @@ class ChatGPTAgent(RespondAgent[ChatGPTAgentConfig]):
             chat_completion = await openai.ChatCompletion.acreate(**chat_parameters)
             text = chat_completion.choices[0].message.content
         self.logger.debug(f"LLM response: {text}")
+        print('Response: ', text)
         return text, False
 
     async def generate_response(
