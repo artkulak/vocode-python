@@ -14,6 +14,7 @@ class EventsManager:
 
     def publish_event(self, event: Event):
         if event.type in self.subscriptions:
+            print(f'Sending event {event.type}')
             self.queue.put_nowait(event)
 
     async def start(self):

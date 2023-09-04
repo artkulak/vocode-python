@@ -130,7 +130,6 @@ class StreamingConversation(Generic[OutputDeviceType]):
                     )
                 )
                 
-                print('Here is your even sir')
                 from vocode.streaming.models.transcript import TranscriptEvent
                 self.conversation.events_manager.publish_event(
                     TranscriptEvent(
