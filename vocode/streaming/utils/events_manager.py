@@ -11,6 +11,7 @@ class EventsManager:
         self.queue: asyncio.Queue[Event] = asyncio.Queue()
         self.subscriptions = set(subscriptions)
         self.active = False
+        print(self.subscriptions)
 
     def publish_event(self, event: Event):
         if event.type in self.subscriptions:
