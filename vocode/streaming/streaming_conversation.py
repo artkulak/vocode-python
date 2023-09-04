@@ -137,7 +137,7 @@ class StreamingConversation(Generic[OutputDeviceType]):
                         text=transcription.message,
                         sender='BOT',
                         timestamp=0,
-                        conversation_id=self.conversation.conversation.id,
+                        conversation_id=self.conversation.id,
                     )
                 )
                 
