@@ -67,6 +67,7 @@ class Transcript(BaseModel):
     def maybe_publish_transcript_event_from_message(
         self, message: Message, conversation_id: str
     ):
+        print(message.text)
         if self.events_manager is not None:
             self.events_manager.publish_event(
                 TranscriptEvent(
