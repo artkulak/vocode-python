@@ -130,6 +130,7 @@ class StreamingConversation(Generic[OutputDeviceType]):
                     )
                 )
                 
+                print('Here is your even sir')
                 self.conversation.events_manager.publish_event(
                     TranscriptEvent(conversation_id=self.id, transcript=TranscriptEvent(
                     text=transcription.message,
