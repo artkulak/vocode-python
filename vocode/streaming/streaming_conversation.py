@@ -324,7 +324,7 @@ class StreamingConversation(Generic[OutputDeviceType]):
         ):
             try:
                 message, synthesis_result = item.payload
-                print(message)
+                print('streaming_conv', message)
                 # create an empty transcript message and attach it to the transcript
                 transcript_message = Message(
                     text="",
