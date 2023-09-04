@@ -135,7 +135,7 @@ class StreamingConversation(Generic[OutputDeviceType]):
                 self.conversation.events_manager.publish_event(
                     TranscriptEvent(
                         text=transcription.message,
-                        sender='BOT',
+                        sender='bot',
                         timestamp=0,
                         conversation_id=self.conversation.id,
                     )
