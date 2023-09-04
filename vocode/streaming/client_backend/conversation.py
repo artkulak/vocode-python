@@ -118,7 +118,7 @@ class TranscriptEventManager(events_manager.EventsManager):
         output_device: WebsocketOutputDevice,
         logger: Optional[logging.Logger] = None,
     ):
-        super().__init__(subscriptions=[EventType.TRANSCRIPT])
+        super().__init__(subscriptions=[EventType.TRANSCRIPT, EventType.TRANSCRIPT_COMPLETE])
         self.output_device = output_device
         self.logger = logger or logging.getLogger(__name__)
 
