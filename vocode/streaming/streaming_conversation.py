@@ -290,6 +290,12 @@ class StreamingConversation(Generic[OutputDeviceType]):
                     ):
                         await self.conversation.filler_audio_worker.wait_for_filler_audio_to_finish()
 
+                self.conversation.transcript.add_message(
+                    message=agent_response_message.message,
+                    conversation_id=self.conversation.id,
+                    publish_to_events_manager=True,
+                )
+                
                 self.conversation.logger.debug("Synthesizing speech for message")
                 synthesis_result = await self.conversation.synthesizer.create_speech(
                     agent_response_message.message,
@@ -329,11 +335,11 @@ class StreamingConversation(Generic[OutputDeviceType]):
                     text="",
                     sender=Sender.BOT,
                 )
-                self.conversation.transcript.add_message(
-                    message=transcript_message,
-                    conversation_id=self.conversation.id,
-                    publish_to_events_manager=True,
-                )
+                # self.conversation.transcript.add_message(
+                #     message=transcript_message,
+                #     conversation_id=self.conversation.id,
+                #     publish_to_events_manager=True,
+                # )
                 message_sent, cut_off = await self.conversation.send_speech_to_output(
                     message.text,
                     synthesis_result,
