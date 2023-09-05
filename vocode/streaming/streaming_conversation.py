@@ -352,10 +352,10 @@ class StreamingConversation(Generic[OutputDeviceType]):
                 )
 
                 # publish the transcript message now that it includes what was said during send_speech_to_output
-                self.conversation.transcript.maybe_publish_transcript_event_from_message(
-                    message=transcript_message,
-                    conversation_id=self.conversation.id,
-                )
+                # self.conversation.transcript.maybe_publish_transcript_event_from_message(
+                #     message=transcript_message,
+                #     conversation_id=self.conversation.id,
+                # )
                 item.agent_response_tracker.set()
                 self.conversation.logger.debug("Message sent: {}".format(message_sent))
                 if cut_off:
