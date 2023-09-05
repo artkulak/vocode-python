@@ -291,7 +291,10 @@ class StreamingConversation(Generic[OutputDeviceType]):
                         await self.conversation.filler_audio_worker.wait_for_filler_audio_to_finish()
                 self.conversation.logger.debug("Got response from llm", agent_response_message.message)
                 self.conversation.transcript.add_message(
-                    message=agent_response_message.message,
+                    message=Message(
+                        text=agent_response_message.message,
+                        sender=Sender.BOT,
+                    ),
                     conversation_id=self.conversation.id,
                     publish_to_events_manager=True,
                 )
