@@ -289,7 +289,7 @@ class StreamingConversation(Generic[OutputDeviceType]):
                         self.conversation.filler_audio_worker.interrupt_current_filler_audio()
                     ):
                         await self.conversation.filler_audio_worker.wait_for_filler_audio_to_finish()
-
+                self.conversation.logger.debug("Got response from llm", agent_response_message.message)
                 self.conversation.transcript.add_message(
                     message=agent_response_message.message,
                     conversation_id=self.conversation.id,
