@@ -679,12 +679,10 @@ class StreamingConversation(Generic[OutputDeviceType]):
                     conversation_id=self.id,
                     publish_to_events_manager=True,
                 )
-            print(synthesis_result.get_message_up_to(2*seconds_spoken))
             if transcript_message:
                 transcript_message.text = synthesis_result.get_message_up_to(
                     seconds_spoken
                 )
-        print(message)
         if self.transcriber.get_transcriber_config().mute_during_speech:
             self.logger.debug("Unmuting transcriber")
             self.transcriber.unmute()
