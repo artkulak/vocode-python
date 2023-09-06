@@ -642,16 +642,6 @@ class StreamingConversation(Generic[OutputDeviceType]):
                 len(chunk_result.chunk) / chunk_size
             )
             seconds_spoken = chunk_idx * seconds_per_chunk
-            print(seconds_spoken, speech_length_seconds)
-            self.transcript.add_message(
-                    message=Message(
-                        text=synthesis_result.get_message_up_to(seconds_spoken),
-                        sender=Sender.BOT,
-                    ),
-                    conversation_id=self.id,
-                    publish_to_events_manager=True,
-                )
-            print(synthesis_result.get_message_up_to(seconds_spoken))
             if stop_event.is_set():
                 self.logger.debug(
                     "Interrupted, stopping text to speech after {} chunks".format(
@@ -680,6 +670,16 @@ class StreamingConversation(Generic[OutputDeviceType]):
             self.mark_last_action_timestamp()
             chunk_idx += 1
             seconds_spoken += seconds_per_chunk
+            
+            self.transcript.add_message(
+                    message=Message(
+                        text=synthesis_result.get_message_up_to(seconds_spoken),
+                        sender=Sender.BOT,
+                    ),
+                    conversation_id=self.id,
+                    publish_to_events_manager=True,
+                )
+            print(synthesis_result.get_message_up_to(seconds_spoken))
             if transcript_message:
                 transcript_message.text = synthesis_result.get_message_up_to(
                     seconds_spoken
