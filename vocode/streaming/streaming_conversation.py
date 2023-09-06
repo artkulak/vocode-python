@@ -673,13 +673,13 @@ class StreamingConversation(Generic[OutputDeviceType]):
             
             self.transcript.add_message(
                     message=Message(
-                        text=synthesis_result.get_message_up_to(seconds_spoken),
+                        text=synthesis_result.get_message_up_to(1.5*seconds_spoken),
                         sender=Sender.BOT,
                     ),
                     conversation_id=self.id,
                     publish_to_events_manager=True,
                 )
-            print(synthesis_result.get_message_up_to(seconds_spoken))
+            print(synthesis_result.get_message_up_to(1.5*seconds_spoken))
             if transcript_message:
                 transcript_message.text = synthesis_result.get_message_up_to(
                     seconds_spoken
