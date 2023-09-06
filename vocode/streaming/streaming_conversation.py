@@ -642,12 +642,12 @@ class StreamingConversation(Generic[OutputDeviceType]):
                 len(chunk_result.chunk) / chunk_size
             )
             seconds_spoken = chunk_idx * seconds_per_chunk
-            self.conversation.transcript.add_message(
+            self.transcript.add_message(
                     message=Message(
                         text=synthesis_result.get_message_up_to(seconds_spoken),
                         sender=Sender.BOT,
                     ),
-                    conversation_id=self.conversation.id,
+                    conversation_id=self.id,
                     publish_to_events_manager=True,
                 )
             # print(synthesis_result.get_message_up_to(seconds_spoken))
