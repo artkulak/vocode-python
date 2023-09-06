@@ -641,7 +641,8 @@ class StreamingConversation(Generic[OutputDeviceType]):
             speech_length_seconds = seconds_per_chunk * (
                 len(chunk_result.chunk) / chunk_size
             )
-            seconds_spoken += chunk_idx * seconds_per_chunk
+            seconds_spoken = chunk_idx * seconds_per_chunk
+            print(seconds_spoken, speech_length_seconds)
             self.transcript.add_message(
                     message=Message(
                         text=synthesis_result.get_message_up_to(seconds_spoken),
