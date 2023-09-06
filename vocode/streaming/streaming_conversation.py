@@ -642,6 +642,7 @@ class StreamingConversation(Generic[OutputDeviceType]):
                 len(chunk_result.chunk) / chunk_size
             )
             seconds_spoken = chunk_idx * seconds_per_chunk
+            print(synthesis_result.get_message_up_to(seconds_spoken))
             if stop_event.is_set():
                 self.logger.debug(
                     "Interrupted, stopping text to speech after {} chunks".format(
