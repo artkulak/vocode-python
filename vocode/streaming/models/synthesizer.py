@@ -143,6 +143,7 @@ class RimeSynthesizerConfig(SynthesizerConfig, type=SynthesizerType.RIME.value):
     speaker: str = RIME_DEFAULT_SPEAKER
     sampling_rate: int = RIME_DEFAULT_SAMPLE_RATE
     base_url: str = RIME_DEFAULT_BASE_URL
+    speed_alpha: Optional[float] = None
 
 
 COQUI_DEFAULT_SPEAKER_ID = "ebe2db86-62a6-49a1-907a-9a1360d4416e"
@@ -171,6 +172,7 @@ class PlayHtSynthesizerConfig(SynthesizerConfig, type=SynthesizerType.PLAY_HT.va
     seed: Optional[int] = None
     temperature: Optional[int] = None
     voice_id: str = PLAYHT_DEFAULT_VOICE_ID
+    experimental_streaming: bool = False
 
 
 class CoquiTTSSynthesizerConfig(
