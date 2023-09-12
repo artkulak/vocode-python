@@ -98,13 +98,11 @@ class ConversationRouter(BaseRouter):
         conversation = self.get_conversation(output_device, start_message)
         await conversation.start(lambda: websocket.send_text(ReadyMessage().json()))
         while conversation.is_active():
-            try:
-                message: WebSocketMessage = WebSocketMessage.parse_obj(
-                    await websocket.receive_json()
-                )
-            except Exception as e:
-                print('Exception happened on websocket object parse', e)
-                continue
+            
+            message: WebSocketMessage = WebSocketMessage.parse_obj(
+                await websocket.receive_json()
+            )
+
             if message.type == WebSocketMessageType.STOP:
                 break
             audio_message = typing.cast(AudioMessage, message)
