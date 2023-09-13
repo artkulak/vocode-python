@@ -115,6 +115,7 @@ class ChatGPTAgent(RespondAgent[ChatGPTAgentConfig]):
         conversation_id: str,
         is_interrupt: bool = False,
     ) -> Tuple[str, bool]:
+        print(human_input, is_interrupt)
         assert self.transcript is not None
         if is_interrupt and self.agent_config.cut_off_response:
             cut_off_response = self.get_cut_off_response()
