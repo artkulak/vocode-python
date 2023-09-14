@@ -81,7 +81,6 @@ class ChatGPTAgent(RespondAgent[ChatGPTAgentConfig]):
             "messages": messages,
             "max_tokens": self.agent_config.max_tokens,
             "temperature": self.agent_config.temperature,
-            "frequency_penalty": 1.2 # TODO: it seems openai returns repeating tokens
         }
 
         if self.agent_config.azure_params is not None:
@@ -139,7 +138,6 @@ class ChatGPTAgent(RespondAgent[ChatGPTAgentConfig]):
         conversation_id: str,
         is_interrupt: bool = False,
     ) -> AsyncGenerator[Tuple[Union[str, FunctionCall], bool], None]:
-        print('generate_response ' + human_input + ' ' + str(is_interrupt))
         if is_interrupt and self.agent_config.cut_off_response:
             cut_off_response = self.get_cut_off_response()
             yield cut_off_response, False
@@ -175,6 +173,7 @@ class ChatGPTAgent(RespondAgent[ChatGPTAgentConfig]):
         else:
             chat_parameters = self.get_chat_parameters()
         chat_parameters["stream"] = True
+        # TODO: remove this when done
         with open('chat_parameters.json', 'w') as json_file:
             import json; json.dump(chat_parameters, json_file)
         stream = await openai.ChatCompletion.acreate(**chat_parameters)
