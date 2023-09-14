@@ -178,5 +178,5 @@ class ChatGPTAgent(RespondAgent[ChatGPTAgentConfig]):
         async for message in collate_response_async(
             openai_get_tokens(stream), get_functions=True
         ):
-            print('generate_response->streaming', message)
+            print('generate_response->streaming', message, chat_parameters)
             yield message, True
