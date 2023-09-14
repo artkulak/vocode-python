@@ -81,7 +81,7 @@ class ChatGPTAgent(RespondAgent[ChatGPTAgentConfig]):
             "messages": messages,
             "max_tokens": self.agent_config.max_tokens,
             "temperature": self.agent_config.temperature,
-            "frequency_penalty": 0.5 # TODO: it seems openai returns repeating tokens
+            "frequency_penalty": 1.2 # TODO: it seems openai returns repeating tokens
         }
 
         if self.agent_config.azure_params is not None:
