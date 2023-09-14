@@ -98,8 +98,10 @@ class Transcript(BaseModel):
         message: Message,
         conversation_id: str,
         publish_to_events_manager: bool = True,
+        append_to_event_log: bool = True,
     ):
-        self.event_logs.append(message)
+        if append_to_event_log:
+            self.event_logs.append(message)
         if publish_to_events_manager:
             self.maybe_publish_transcript_event_from_message(
                 message=message, conversation_id=conversation_id

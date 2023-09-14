@@ -338,11 +338,11 @@ class StreamingConversation(Generic[OutputDeviceType]):
                     text="",
                     sender=Sender.BOT,
                 )
-                # self.conversation.transcript.add_message(
-                #     message=transcript_message,
-                #     conversation_id=self.conversation.id,
-                #     publish_to_events_manager=True,
-                # )
+                self.conversation.transcript.add_message(
+                    message=transcript_message,
+                    conversation_id=self.conversation.id,
+                    publish_to_events_manager=False,
+                )
                 message_sent, cut_off = await self.conversation.send_speech_to_output(
                     message.text,
                     synthesis_result,
@@ -671,14 +671,15 @@ class StreamingConversation(Generic[OutputDeviceType]):
             chunk_idx += 1
             seconds_spoken += seconds_per_chunk
             
-            # self.transcript.add_message(
-            #         message=Message(
-            #             text=synthesis_result.get_message_up_to(2*seconds_spoken),
-            #             sender=Sender.BOT,
-            #         ),
-            #         conversation_id=self.id,
-            #         publish_to_events_manager=True,
-            #     )
+            self.transcript.add_message(
+                    message=Message(
+                        text=synthesis_result.get_message_up_to(2*seconds_spoken),
+                        sender=Sender.BOT,
+                    ),
+                    conversation_id=self.id,
+                    publish_to_events_manager=True,
+                    append_to_event_log=False
+                )
             if transcript_message:
                 transcript_message.text = synthesis_result.get_message_up_to(
                     seconds_spoken
