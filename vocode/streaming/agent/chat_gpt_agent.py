@@ -176,7 +176,7 @@ class ChatGPTAgent(RespondAgent[ChatGPTAgentConfig]):
             chat_parameters = self.get_chat_parameters()
         chat_parameters["stream"] = True
         with open('chat_parameters.json', 'w') as json_file:
-            json.dump(chat_parameters, json_file)
+            import json; json.dump(chat_parameters, json_file)
         stream = await openai.ChatCompletion.acreate(**chat_parameters)
         async for message in collate_response_async(
             openai_get_tokens(stream), get_functions=True
