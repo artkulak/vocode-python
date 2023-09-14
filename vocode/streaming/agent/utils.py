@@ -39,6 +39,7 @@ async def collate_response_async(
     function_args_buffer = ""
     prev_ends_with_money = False
     async for token in gen:
+        print("collate_response_async", token)
         if not token:
             continue
         if isinstance(token, str):
