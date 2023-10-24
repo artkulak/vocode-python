@@ -76,7 +76,7 @@ class ConversationRouter(BaseRouter):
         return StreamingConversation(
             output_device=output_device,
             transcriber=transcriber,
-            agent=self.agent_thunk(),
+            agent=self.agent_thunk(prompt),
             synthesizer=synthesizer,
             conversation_id=start_message.conversation_id,
             events_manager=TranscriptEventManager(output_device, self.logger)
