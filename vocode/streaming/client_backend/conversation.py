@@ -95,6 +95,7 @@ class ConversationRouter(BaseRouter):
             start_message.output_audio_config.sampling_rate,
             start_message.output_audio_config.audio_encoding,
         )
+        print(start_message)
         conversation = self.get_conversation(output_device, start_message)
         await conversation.start(lambda: websocket.send_text(ReadyMessage().json()))
         while conversation.is_active():
