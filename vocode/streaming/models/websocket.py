@@ -3,7 +3,7 @@ from enum import Enum
 from typing import Optional
 
 from vocode.streaming.models.audio_encoding import AudioEncoding
-from vocode.streaming.models.client_backend import InputAudioConfig, OutputAudioConfig
+from vocode.streaming.models.client_backend import InputAudioConfig, OutputAudioConfig, ConversationData
 from .model import TypedModel
 from .transcriber import TranscriberConfig
 from .agent import AgentConfig
@@ -61,6 +61,7 @@ class AudioConfigStartMessage(
     output_audio_config: OutputAudioConfig
     conversation_id: Optional[str] = None
     subscribe_transcript: Optional[bool] = None
+    conversation_data: ConversationData
 
 
 class ReadyMessage(WebSocketMessage, type=WebSocketMessageType.READY):
