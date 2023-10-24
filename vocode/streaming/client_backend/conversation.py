@@ -97,7 +97,7 @@ class ConversationRouter(BaseRouter):
             start_message.output_audio_config.audio_encoding,
         )
         print(start_message)
-        prompt = f'''Your name is {start_message.conversation_data["deeva_name"]}'''
+        prompt = f'''Your name is {start_message.conversation_data.deeva_name}'''
         print(prompt)
         conversation = self.get_conversation(
             output_device, 
