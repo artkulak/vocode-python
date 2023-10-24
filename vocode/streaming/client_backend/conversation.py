@@ -68,6 +68,7 @@ class ConversationRouter(BaseRouter):
         self,
         output_device: WebsocketOutputDevice,
         start_message: AudioConfigStartMessage,
+        promt: str
     ) -> StreamingConversation:
         transcriber = self.transcriber_thunk(start_message.input_audio_config)
         synthesizer = self.synthesizer_thunk(start_message.output_audio_config)
@@ -96,7 +97,13 @@ class ConversationRouter(BaseRouter):
             start_message.output_audio_config.audio_encoding,
         )
         print(start_message)
-        conversation = self.get_conversation(output_device, start_message)
+        prompt = f'''Your name is {start_message["deeva_name"]}'''
+        print(prompt)
+        conversation = self.get_conversation(
+            output_device, 
+            start_message,
+            prompt
+        )
         await conversation.start(lambda: websocket.send_text(ReadyMessage().json()))
         while conversation.is_active():
             
