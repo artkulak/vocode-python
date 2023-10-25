@@ -125,11 +125,11 @@ class ConversationRouter(BaseRouter):
             Here is your memory of the past conversation with {user_first_name}: 
             {deeva_memory}
         '''
-        print(prompt)
+        print(base_prompt)
         conversation = self.get_conversation(
             output_device, 
             start_message,
-            prompt
+            base_prompt
         )
         await conversation.start(lambda: websocket.send_text(ReadyMessage().json()))
         while conversation.is_active():
