@@ -101,7 +101,6 @@ class ConversationRouter(BaseRouter):
         user_first_name = start_message.conversation_data.user_first_name
         deeva_interests = start_message.conversation_data.deeva_interests
         user_interests = start_message.conversation_data.user_interests
-        deeva_personalities = start_message.conversation_data.deeva_personalities
         deeva_memory = start_message.conversation_data.deeva_memory
         base_prompt = f'''
             Name: {deeva_name}
