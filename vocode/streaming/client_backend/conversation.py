@@ -103,9 +103,10 @@ class ConversationRouter(BaseRouter):
         # deeva_interests = start_message.conversation_data.deeva_interests
         # user_interests = start_message.conversation_data.user_interests
         # deeva_memory = start_message.conversation_data.deeva_memory
-        user_interests = " ".join([interest['name'] for interest in start_message.conversation_data.user_interests or []])
-        deeva_interests = " ".join([interest['interest']['name'] for interest in start_message.conversation_data.deeva_interests or []])
-        deeva_memory = " ".join([memory['memo'] for memory in start_message.conversation_data.deeva_memories or []])
+        user_interests = " ".join([value['name'] for key, value in (start_message.conversation_data.user_interests or {}).items()])
+        deeva_interests = " ".join([value['interest']['name'] for key, value in (start_message.conversation_data.deeva_interests or {}).items()])
+        deeva_memory = " ".join([value['memo'] for key, value in (start_message.conversation_data.deeva_memories or {}).items()])
+
         base_prompt = f'''
             Name: {deeva_name}
             Role: Loving and Caring {deeva_relationship_type}
