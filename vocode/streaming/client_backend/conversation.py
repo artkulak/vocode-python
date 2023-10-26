@@ -103,10 +103,15 @@ class ConversationRouter(BaseRouter):
         # deeva_interests = start_message.conversation_data.deeva_interests
         # user_interests = start_message.conversation_data.user_interests
         # deeva_memory = start_message.conversation_data.deeva_memory
-        user_interests = " ".join([value['name'] for key, value in (start_message.conversation_data.user_interests or {}).items()])
-        deeva_interests = " ".join([value['interest']['name'] for key, value in (start_message.conversation_data.deeva_interests or {}).items()])
-        deeva_memory = " ".join([value['memo'] for key, value in (start_message.conversation_data.deeva_memories or {}).items()])
-
+        try:
+            user_interests = " ".join([value['name'] for key, value in (start_message.conversation_data.user_interests or {}).items()])
+            deeva_interests = " ".join([value['interest']['name'] for key, value in (start_message.conversation_data.deeva_interests or {}).items()])
+            deeva_memory = " ".join([value['memo'] for key, value in (start_message.conversation_data.deeva_memories or {}).items()])
+        except:
+            user_interests = ""
+            deeva_interests = ""
+            deeva_memory = ""
+            
         base_prompt = f'''
             Name: {deeva_name}
             Role: Loving and Caring {deeva_relationship_type}
@@ -130,7 +135,6 @@ class ConversationRouter(BaseRouter):
             Here is your memory of the past conversation with {user_first_name}: 
             {deeva_memory}
         '''
-        print(base_prompt)
         conversation = self.get_conversation(
             output_device, 
             start_message,
