@@ -1,4 +1,4 @@
-from typing import Optional
+from typing import Any, Optional, List
 from vocode.streaming.models.audio_encoding import AudioEncoding
 from vocode.streaming.models.model import BaseModel
 
