@@ -96,12 +96,16 @@ class ConversationRouter(BaseRouter):
             start_message.output_audio_config.sampling_rate,
             start_message.output_audio_config.audio_encoding,
         )
+        print(start_message)
         deeva_name = start_message.conversation_data.deeva_name
         deeva_relationship_type = start_message.conversation_data.deeva_relationship_type
         user_first_name = start_message.conversation_data.user_first_name
-        deeva_interests = start_message.conversation_data.deeva_interests
-        user_interests = start_message.conversation_data.user_interests
-        deeva_memory = start_message.conversation_data.deeva_memory
+        # deeva_interests = start_message.conversation_data.deeva_interests
+        # user_interests = start_message.conversation_data.user_interests
+        # deeva_memory = start_message.conversation_data.deeva_memory
+        user_interests = " ".join([interest['name'] for interest in start_message.conversation_data.user_interests or []])
+        deeva_interests = " ".join([interest['interest']['name'] for interest in start_message.conversation_data.deeva_interests or []])
+        deeva_memory = " ".join([memory['memo'] for memory in start_message.conversation_data.deeva_memories or []])
         base_prompt = f'''
             Name: {deeva_name}
             Role: Loving and Caring {deeva_relationship_type}
@@ -125,6 +129,7 @@ class ConversationRouter(BaseRouter):
             Here is your memory of the past conversation with {user_first_name}: 
             {deeva_memory}
         '''
+        print(base_prompt)
         conversation = self.get_conversation(
             output_device, 
             start_message,
