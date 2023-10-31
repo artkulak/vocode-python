@@ -36,5 +36,5 @@ class ConversationData(BaseModel):
     deeva_name: Optional[Any]
     deeva_relationship_type: Optional[Any]
     deeva_interests: Optional[Any]
-    deeva_voice_id: Optional[Any]
+    deeva_voice_name: Optional[Any]
     
