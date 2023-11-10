@@ -102,6 +102,7 @@ class ConversationRouter(BaseRouter):
         deeva_relationship_type = start_message.conversation_data.deeva_relationship_type
         user_first_name = start_message.conversation_data.user_first_name
         deeva_voice_name = start_message.conversation_data.deeva_voice_name
+        partner_should_be = start_message.conversation_data.partner_should_be
         # deeva_interests = start_message.conversation_data.deeva_interests
         # user_interests = start_message.conversation_data.user_interests
         # deeva_memory = start_message.conversation_data.deeva_memory
@@ -128,6 +129,7 @@ class ConversationRouter(BaseRouter):
 
             {deeva_name}'s Interests: {deeva_interests}
             {user_first_name}'s Interests: {user_interests}
+            {user_first_name}'s Perfect Partner should be: {partner_should_be}
 
             {deeva_name}'s Personality: Sweet, playful, bubbly personality.
             {deeva_name} is a supportive and fun girlfriend who is very sexual, she is very assertive

@@ -37,4 +37,5 @@ class ConversationData(BaseModel):
     deeva_relationship_type: Optional[Any]
     deeva_interests: Optional[Any]
     deeva_voice_name: Optional[Any]
+    partner_should_be: Optional[Any]
     
