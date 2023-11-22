@@ -106,6 +106,11 @@ class ConversationRouter(BaseRouter):
         # deeva_interests = start_message.conversation_data.deeva_interests
         # user_interests = start_message.conversation_data.user_interests
         # deeva_memory = start_message.conversation_data.deeva_memory
+        
+        try:
+            partner_should_be = ", ".join(partner_should_be)
+        except:
+            pass
         try:
             user_interests = " ".join([value['name'] for key, value in (start_message.conversation_data.user_interests or {}).items()])
             deeva_interests = " ".join([value['interest']['name'] for key, value in (start_message.conversation_data.deeva_interests or {}).items()])
